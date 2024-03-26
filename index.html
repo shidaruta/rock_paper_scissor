@@ -5,53 +5,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissor</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
+
     <script>
 
         let weapons = ['rock', 'paper', 'scissor'];
-
+        let playerScore=0;
+        let ComputerScore=0;
         function getComputerChoice() {
-            let weaponsChoice = Math.floor(Math.random() * (3 - 1 + 1));
+            let weaponsChoice = Math.floor(Math.random() * 3);
             return weapons[weaponsChoice];
         }
 
-        let computerSelection = getComputerChoice();
+        
+       
         function playRockPaperScissor(playerSelection, computerSelection) {
 
             if (playerSelection == 'rock' && computerSelection == 'paper') {
-                console.log("Lose");
+                resultText='Lose';
             } else if (playerSelection == 'rock' && computerSelection == 'scissor') {
-                console.log("win");
+                resultText='Win';
             } else if (playerSelection == 'scissor' && computerSelection == 'paper') {
-                console.log("win");
+                resultText='Win';
             } else if (computerSelection == 'rock' && playerSelection == 'paper') {
-                console.log("Win");
+                resultText='Win';
             } else if (computerSelection == 'rock' && playerSelection == 'scissor') {
-                console.log("Lose");
+                resultText='Lose';
             } else if (computerSelection == 'scissor' && playerSelection == 'paper') {
-                console.log("Lose");
+                resultText='Lose';
             } else {
-                console.log("Draw")
+                resultText='Draw';
             }
 
         }
 
-        function playGame() {
-            for (let i = 0; i < 5; i++) {
+        const rpsDiv= document.createElement("div");
+        rpsDiv.className="rpsDiv";
+        document.body.appendChild(rpsDiv);
+        
+        
+        
+        const rockBtn= document.createElement("button");
+        rockBtn.textContent='Rock';
+        rockBtn.className="weapon-btn";
+        rpsDiv.appendChild(rockBtn);
+        rockBtn.addEventListener('click',()=>{
+            playerSelection='rock';
+        });
 
-                let playerSelection = prompt("Choose Rock, Paper or Scissor");
-                let caseInsensitive = playerSelection.toLowerCase();
-                console.log('player: ' + caseInsensitive);
-                console.log('computer: ' + computerSelection);
-                playRockPaperScissor(caseInsensitive, computerSelection);
+        const paperBtn= document.createElement("button");
+        paperBtn.textContent='Paper';
+        paperBtn.className="weapon-btn";
+        rpsDiv.appendChild(paperBtn);
+        paperBtn.addEventListener('click',()=>{
+            playerSelection='paper';
+        });
+
+        const scissorBtn= document.createElement("button");
+        scissorBtn.textContent='Scissor';
+        scissorBtn.className="weapon-btn";
+        rpsDiv.appendChild(scissorBtn);
+        scissorBtn.addEventListener('click',()=>{
+            playerSelection='scissor';
+            
+        });
+
+        const playBtn= document.createElement("button");
+        playBtn.textContent='Play';
+        playBtn.className="playBtn";
+        document.body.appendChild(playBtn); 
+
+        const scoreDiv=document.createElement("div");
+        scoreDiv.textContent=playRockPaperScissor();
+        scoreDiv.className='scoreDiv';
+        document.body.appendChild(scoreDiv);    
+        
+        const resultDiv=document.createElement("div");
+        resultDiv.className='resultDiv';
+        document.body.appendChild(resultDiv);    
 
 
+        function winLossCounter(){
+            if (resultText=='Win') {
+                playerScore++;
+                
+            }else if(resultText=='Lose') {
+                ComputerScore++;
+                
             }
         }
 
-        playGame();
+        function gameResult(){
+            if (playerScore==5) {
+                resultDiv.textContent='YOU WIN';
+                resultDiv.style.backgroundColor='gold';
+                resultDiv.style.color='black';
+                playBtn.disabled=true;
+                playBtn.style.backgroundColor='gray';
+    
+    
+
+        }else if(ComputerScore==5){
+            resultDiv.textContent='YOU LOSE ';
+            resultDiv.style.backgroundColor='red';
+            playBtn.disabled=true;
+            playBtn.style.backgroundColor='gray';
+    
+        }
+        }
+
+        playBtn.addEventListener('click',()=>{
+            let computerSelection = getComputerChoice();
+            playRockPaperScissor(playerSelection, computerSelection);
+            winLossCounter();
+            gameResult();
+            const text= 'Player: '+playerSelection +'<br>'+ 'Computer: '
+            +computerSelection+ '<br>' + '<br> PlayerScore: '+ playerScore
+            +'<br> ComputerScore: '+ ComputerScore;
+            scoreDiv.innerHTML=text;
+
+        });
+           
+
+       
     </script>
 
 

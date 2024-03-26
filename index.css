@@ -1,0 +1,65 @@
+*{
+    text-align: center;
+    background-color: brown;
+}
+
+.playBtn{
+    margin: 0 5% 2% 5% ; 
+    padding: 1% 5%;
+    border-radius: 7px;
+    border: none;
+    background-color: white;
+    color:black;
+    font-weight: 900;
+    font-size: medium;
+    transition: .1s;
+
+}    
+.playBtn:hover{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: burlywood;
+    transform: scale(1.1);
+}
+.weapon-btn{
+    padding: 2% 7%;
+    border-radius: 7px;
+    border: none;
+    background-color: brown;
+    color:rgb(240, 220, 193);
+    font-weight: 900;
+    font-size: medium;
+    transition: .1s;
+}
+
+.weapon-btn:hover{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: white;
+    transform: scale(1.1);
+}
+
+.rpsDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 2% 35% 2% 35%; 
+    background-color: whitesmoke;
+    width: auto;
+    height: 50vh;
+    border-radius: 10px;
+
+}
+.scoreDiv{
+    color: black;
+    background-color: rgb(65, 137, 201);
+    margin: 0 25% 0 25% ; 
+    border-radius: 7px;
+    font-weight: 500;
+    padding: 3%;
+}
+.resultDiv{
+    color: white;
+    margin: 0px 25% 5% 25%; 
+    padding: 20px 0px;
+
+}
